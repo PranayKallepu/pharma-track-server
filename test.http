@@ -1,0 +1,189 @@
+@rootURL = http://localhost:3000
+@userToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2JkNjJkYzIwZTg0N2U0NzhhNmIyZiIsImlhdCI6MTc1Mjk0NjIyOSwiZXhwIjoxNzUzMDMyNjI5fQ.niqZdTrHSt6CircVtf4Y8DP2FC6NF8eE_JqXiqeeGaw
+
+###
+# User
+POST {{rootURL}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "pranay",
+  "password": "123"
+}
+
+###
+POST {{rootURL}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "pranay",
+  "password": "123"
+}
+
+###
+GET {{rootURL}}/api/medicines
+Authorization: {{userToken}}
+
+###
+POST {{rootURL}}/api/medicines
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+    "medicineName": "Paracetamol",
+    "discount": "10"
+  "batchNo": "B999",
+  "expiryDate": "2026-01-01",
+  "price": 20.0,
+  "quantity": 50,
+  "manufacturer": "NewCorp"
+}
+
+###
+PUT {{rootURL}}/api/medicines/687be7647034c702f78c29e9
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+  "medicineName": "Paracetamol",
+  "batchNo": "A99",
+  "expiryDate": "2023-07-18",
+  "price": 30.0,
+  "quantity": 60,
+  "manufacturer": "NewCorporation"
+}
+
+###
+DELETE {{rootURL}}/api/medicines/1
+Authorization: {{userToken}}
+
+###
+GET {{rootURL}}/api/medicines/expired
+Authorization: {{userToken}}
+
+###
+GET {{rootURL}}/api/customers
+Authorization: {{userToken}}
+
+###
+POST {{rootURL}}/api/customers
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+  "customerName": "Teja Rao",
+  "discount": "10"
+  "mobile": "9876543211",
+  "address": "Warangal",
+  "billName": "Teja R.",
+  "billingType": "Cash",
+  "doctorName": "Dr. Arjun"
+}
+
+###
+PUT {{rootURL}}/api/customers/687be859f55c932cedea8fff
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+  "doctorName": "Dr. Arjun Das"
+}
+
+###
+DELETE {{rootURL}}/api/customers/1
+Authorization: {{userToken}}
+
+###
+GET {{rootURL}}/api/customers/687be859f55c932cedea8fff
+Authorization: {{userToken}}
+
+//___________Doctors APIs
+###
+GET {{rootURL}}/api/doctors
+Authorization: {{userToken}}
+
+###
+POST {{rootURL}}/api/doctors
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+  "firstName": "Amit",
+  "lastName": "Verma",
+  "mobile": "9876543210",
+  "email": "amitverma@example.com",
+  "licenseNo": "LIC123456",
+  "city": "Mumbai",
+  "pinCode": "400001",
+  "address": "123 Marine Drive"
+}
+
+//___________Pharmacy APIs
+###
+GET {{rootURL}}/api/pharmacy-info
+Authorization: {{userToken}}
+
+###
+POST {{rootURL}}/api/pharmacy-info
+Content-Type: multipart/form-data
+Authorization: {{userToken}}
+
+{
+  "pharmacyName": "MedPlus Pharmacy",
+  "pharmacistName": "Dr. Anjali Rao",
+  "gstn": "27ABCDE1234F1Z5",
+  "pan": "ABCDE1234F",
+  "storePhone": "9876543210",
+  "storeEmail": "support@medplus.com",
+  "address": "12-3-45, High Street Road",
+  "area": "Ameerpet",
+  "city": "Hyderabad",
+  "pinCode": "500016",
+  "logo": "logo.png",          // as file
+  "signature": "sign.png"      // as file
+}
+
+
+//___________Sales APIs
+###
+GET {{rootURL}}/api/sales
+Authorization: {{userToken}}
+
+###
+POST {{rootURL}}/api/sales
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+  "customerId": "687be859f55c932cedea8fff",
+  "doctorId": "687be9b672ddafe69a475fdf",
+  "medicineId": "687be7647034c702f78c29e9",
+  "quantity": 2,
+  "discount": 5.00,
+  "amount": 95.00,
+  "billing_date": "2025-07-15"
+}
+
+//___________Invoices APIs
+###
+GET {{rootURL}}/api/invoices
+Authorization: {{userToken}}
+
+###
+POST {{rootURL}}/api/invoices
+Content-Type: application/json
+Authorization: {{userToken}}
+
+{
+    "PharmacyInfoId": "687c9745c570b4dc3754d3a7",
+    "customerId": "687be859f55c932cedea8fff",
+    "doctorId": "687be9b672ddafe69a475fdf",
+    "itemDescription": "Paracetamol 500mg - 2 strips",
+    "quantity": 2,
+    "unitPrice": 50.00,
+    "totalAmount": 100.00,
+    "taxAmount": 5.00,
+    "discount": 10,
+    "payment": "cash"
+}
+
