@@ -47,15 +47,18 @@ pharma-track-mongodb/
      ```env
      MONGODB_URI=mongodb://localhost:27017/pharma-track
      JWT_SECRET=your_jwt_secret
-     PORT=5000
+     PORT=3000
+     CLOUDINARY_CLOUD_NAME="your_cloud_name"
+     CLOUDINARY_API_KEY= "your_api_key"
+     CLOUDINARY_API_SECRET= "your_api_secret"
      ```
 
 4. **Start the server:**
    ```bash
    npm start
    ```
-   The server will run on `http://localhost:5000` by default.
-
+   The server will run on `[http://localhost:3000](https://pharma-track-server.onrender.com)` by default.
+   
 ## Usage
 
 - Use tools like Postman or Insomnia to interact with the API endpoints.
